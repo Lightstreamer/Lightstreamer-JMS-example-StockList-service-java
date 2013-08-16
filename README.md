@@ -1,6 +1,6 @@
 # Lightstreamer JMS Gateway StockList Demo Service for Java #
 
-This project contains the source code and all the resources needed to install the StockListDemo service for Lightstreamer JMS Gateway.<br>
+This project contains the source code and all the resources needed to install the StockListDemo Service for Lightstreamer JMS Gateway.<br>
 
 Check out the sources for further explanations.
 
@@ -67,7 +67,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 ## The JMS Gateway adapter ##
 
-Please copy from the JMS Gateway zip the adapter directory ("JMSGateway") under "LightstreamerHome/adapters" directory. Paste previously copied jars under JMSGateway/lib.
+Please copy from the [JMS Gateway zip](http://www.lightstreamer.com/download) file the adapter directory ("JMSGateway") under "LightstreamerHome/adapters" directory. Paste previously copied jars under JMSGateway/lib.
 
 Please also download the JMS distribution version 1.1 from [Oracle's Java website](). It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
 Extract its content and find the jms.jar file under the lib directory. Please copy this jar under JMSGateway/lib.
