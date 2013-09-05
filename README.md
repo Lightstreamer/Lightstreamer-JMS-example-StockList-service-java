@@ -6,7 +6,7 @@ Check out the sources for further explanations.
 
 # Build #
 
-If you want to skip the build process of this Service please note that in the [deploy release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project you can find the "deploy.zip" file that contains a ready-made deployment resource for the Lightstreamer server.<br>
+If you want to skip the build process of this Service please note that in the [deploy release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project you can find the "deploy.zip" file that contains a ready-made deployment resource for the Lightstreamer server. Please note that the zip file includes resources for this service demo as well as for [Chat Demo](https://github.com/Weswit/Lightstreamer-JMS-example-Chat-service-java) and [Portfolio Demo](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java) services.<br>
 
 # Deploy #
 
@@ -37,7 +37,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 ### With TIBCO EMS ###
 
-1) You should create a topic and a queue. Open the queues.conf and topics.conf located under [EMSHome](http://www.tibco.com/products/automation/messaging/enterprise-messaging/enterprise-message-service/default.jsp)"/bin/" and append to them three lines containing (without apexes) "stocksQueue", "portfolioQueue" and "chatQueue" for queues.conf and "stocksTopic", "portfolioTopic" and "chatTopic" for topics.conf.
+1) You should create a topic and a queue. Open the queues.conf and topics.conf located under [EMSHome](http://www.tibco.com/products/automation/messaging/enterprise-messaging/enterprise-message-service/default.jsp)"/bin/" and append to them the lines containing (without apexes) "stocksQueue" for queues.conf and "stocksTopic" for topics.conf.
 
 2) Copy "tibcrypt.jar", "tibjms.jar" and "tibjmsufo.jar" from "EMSHome/clients/java". You will need to paste them later.
 
@@ -49,7 +49,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 ### With JBossMQ ###
 
-1) You shold create a topic and a queue. Open the jbossmq-destinations-service.xml located under [JBossHome](http://www.jboss.org/products/amq)"/server/default/deploy/jms/ and add six mbean nodes as shown below:
+1) You shold create a topic and a queue. Open the jbossmq-destinations-service.xml located under [JBossHome](http://www.jboss.org/products/amq)"/server/default/deploy/jms/ and add two mbean nodes as shown below:
 
 ```xml
 	<mbean code="org.jboss.mq.server.jmx.Topic"
@@ -69,7 +69,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 Please copy from the [JMS Gateway zip](http://www.lightstreamer.com/download) file the adapter directory ("JMSGateway") under "LightstreamerHome/adapters" directory. Paste previously copied jars under JMSGateway/lib.
 
-Please also download the JMS distribution version 1.1 from [Oracle's Java website](). It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
+Please also download the JMS distribution version 1.1 from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
 Extract its content and find the jms.jar file under the lib directory. Please copy this jar under JMSGateway/lib.
 
 Since the adapter will be receiving object messages coming from the generator, you need also to copy its JMSDemoService.jar file under "JMSGateway/lib". It can be found under "/JMS_Demo_Services/Deployment/JMSDemoServices/lib" from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project.
@@ -82,7 +82,7 @@ Finally check the adapter log configuration file to specify logging level and de
 ## The Demo Services ##
 
 Please copy the "JMS_Demo_Services/Deployment/JMSDemoServices" directory from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project anywhere in your file system, and put previously copied jars under its lib subdirectory.
-Please copy here also the jms.jar obtained at point 1) from Oracle's Java website.
+Please copy here also the jms.jar obtained from Oracle's Java website.
 
 Then configure the launch script start_demo_services.bat (or start_demo_services.sh if you are under Linux or Mac OS X), setting the GENERATOR_HOME (the path of the directory), the JAVA_HOME (path of a JRE/JDK) and CUSTOM_JARS. Pay particular attention putting all the JMS broker-specific jars to the CUSTOM_JARS variable. It is preset with jars for HornetQ.
 
@@ -98,8 +98,8 @@ Finally check the log4j configuration file.
 ## Related projects ##
 * [Lightstreamer StockList Demo Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java)
 * [Lightstreamer Reusable Metadata Adapter in Java](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
-* To be add [Lightstreamer JMS Gateway Portfolio Demo Adapter for Java]()
-* To be add [Lightstreamer JMS Gateway Chat Demo Adapter for Java]()
+* [Lightstreamer JMS Gateway Portfolio Demo Adapter for Java](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java)
+* [Lightstreamer JMS Gateway Chat Demo Adapter for Java](https://github.com/Weswit/Lightstreamer-JMS-example-Chat-service-java)
 
 # Lightstreamer Compatibility Notes #
 
