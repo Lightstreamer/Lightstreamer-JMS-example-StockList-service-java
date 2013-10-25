@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd-MMM-yy HH:mm:ss,SSS }|%-5.5p|%-33.33c|%-27.27t|%m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="FILEOUT" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/JMSDemoServices.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd-MMM-yy HH:mm:ss,SSS }|%-5.5p|%-33.33c|%-27.27t|%m%n"/>
+		</layout>
+	</appender>
+	
+	<category name="jms_demo_services" class="org.apache.log4j.Logger">
+		<priority value="DEBUG" />
+  	  	<appender-ref ref="STDOUT" />
+  	  	<appender-ref ref="FILEOUT" />
+	</category>
+
+</log4j:configuration>

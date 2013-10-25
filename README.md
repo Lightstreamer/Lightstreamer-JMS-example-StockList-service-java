@@ -1,12 +1,12 @@
 # Lightstreamer JMS Gateway StockList Demo Service for Java #
 
-This project contains the source code and all the resources needed to install the StockListDemo Service for Lightstreamer JMS Gateway.<br>
+This project contains the source code and all the resources needed to install the StockList Demo Service for Lightstreamer JMS Gateway.<br>
 
 Check out the sources for further explanations.
 
 # Build #
 
-If you want to skip the build process of this Service please note that in the [deploy release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project you can find the "deploy.zip" file that contains a ready-made deployment resource for the Lightstreamer server. Please note that the zip file includes resources for this service demo as well as for [Chat Demo](https://github.com/Weswit/Lightstreamer-JMS-example-Chat-service-java) and [Portfolio Demo](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java) services.<br>
+If you want to skip the build process of this Service please note that in the [deploy release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project you can find the "deploy.zip" file that contains a ready-made deployment resource for the Lightstreamer server.<br>
 
 # Deploy #
 
@@ -24,6 +24,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 1) You should configure a topic and a queue. Open the hornetq-jms.xml located under [HornetQHome](http://www.jboss.org/hornetq)"/config/stand-alone/non-clustered" and add the following nodes:
 
 ```xml
+
    <topic name="stocksTopic">
       <entry name="stocksTopic"/>
    </topic>
@@ -31,6 +32,7 @@ Once you have selected and installed your JMS broker, you will have to configure
    <queue name="stocksQueue">
       <entry name="stocksQueue"/>
    </queue>
+
 ```
 
 2) Copy the following jars: "hornetq-commons.jar", "hornetq-core-client.jar", "hornetq-jms-client.jar", "jnp-client.jar" and "netty.jar" from "/HornetQHome/lib". You will need to paste them later.
@@ -52,6 +54,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 1) You shold create a topic and a queue. Open the jbossmq-destinations-service.xml located under [JBossHome](http://www.jboss.org/products/amq)"/server/default/deploy/jms/ and add two mbean nodes as shown below:
 
 ```xml
+
 	<mbean code="org.jboss.mq.server.jmx.Topic"
 		name="jboss.mq.destination:service=Topic,name=stocksTopic">
 		<depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
@@ -61,8 +64,9 @@ Once you have selected and installed your JMS broker, you will have to configure
 		name="jboss.mq.destination:service=Queue,name=stocksQueue">
     	<depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
 	</mbean>
+
 ```
-  
+
 2) Copy "jbossall-client.jar" from "JBossHome/client/". You will need to paste it later.
 
 ## The JMS Gateway adapter ##
@@ -72,7 +76,7 @@ Please copy from the [JMS Gateway zip](http://www.lightstreamer.com/download) fi
 Please also download the JMS distribution version 1.1 from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
 Extract its content and find the jms.jar file under the lib directory. Please copy this jar under JMSGateway/lib.
 
-Since the adapter will be receiving object messages coming from the generator, you need also to copy its JMSDemoService.jar file under "JMSGateway/lib". It can be found under "/JMS_Demo_Services/Deployment/JMSDemoServices/lib" from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project.
+Since the adapter will be receiving object messages coming from the generator, you need also to copy its JMSStockListDemoService.jar file under "JMSGateway/lib". It can be found under "JMS_StockList_Demo_Service/lib" from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project.
 If you later plan to use object messages with your custom created objects, remember to also add their jar files under JMSGateway/lib.
 
 Now open and configure JMSGateway/adapters.xml: you will find 4 sample data adapters configured for each of the 4 JMS brokers above. Find yours, enable it by changing the "disabled" param and set specific connection parameters (hostname, port, etc.).
@@ -81,12 +85,12 @@ Finally check the adapter log configuration file to specify logging level and de
 
 ## The Demo Services ##
 
-Please copy the "JMS_Demo_Services/Deployment/JMSDemoServices" directory from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project anywhere in your file system, and put previously copied jars under its lib subdirectory.
+Please copy the "JMS_StockList_Demo_Service" directory from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project anywhere in your file system, and put previously copied jars under its lib subdirectory.
 Please copy here also the jms.jar obtained from Oracle's Java website.
 
-Then configure the launch script start_demo_services.bat (or start_demo_services.sh if you are under Linux or Mac OS X), setting the GENERATOR_HOME (the path of the directory), the JAVA_HOME (path of a JRE/JDK) and CUSTOM_JARS. Pay particular attention putting all the JMS broker-specific jars to the CUSTOM_JARS variable. It is preset with jars for HornetQ.
+Then configure the launch script start_stocklist_demo_service.bat (or start_stocklist_demo_service.sh if you are under Linux or Mac OS X), adding all the JMS broker-specific jars to the CUSTOM_JARS variable. It is preset with jars for HornetQ.
 
-Now you should edit the configuration file. The included demo_services.conf file shows all available parameters and 4 sample configuration for the 4 JMS brokers above. Note that all parameters are required.
+Now you should edit the configuration file. The included demo_service.conf file shows all available parameters and 4 sample configuration for the 4 JMS brokers above. Note that all parameters are required.
 
 Finally check the log4j configuration file.
 
@@ -98,8 +102,8 @@ Finally check the log4j configuration file.
 ## Related projects ##
 * [Lightstreamer StockList Demo Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java)
 * [Lightstreamer Reusable Metadata Adapter in Java](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
-* [Lightstreamer JMS Gateway Portfolio Demo Adapter for Java](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java)
-* [Lightstreamer JMS Gateway Chat Demo Adapter for Java](https://github.com/Weswit/Lightstreamer-JMS-example-Chat-service-java)
+* [Lightstreamer JMS Gateway Portfolio Demo Service for Java](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java)
+* [Lightstreamer JMS Gateway Chat Demo Service for Java](https://github.com/Weswit/Lightstreamer-JMS-example-Chat-service-java)
 
 # Lightstreamer Compatibility Notes #
 

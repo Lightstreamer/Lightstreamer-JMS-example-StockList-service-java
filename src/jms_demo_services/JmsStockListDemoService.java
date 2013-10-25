@@ -24,14 +24,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import jms_demo_services.portfolio.PortfolioService;
-import jms_demo_services.simple_chat.SimpleChatService;
 import jms_demo_services.stock_list.StockListService;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
-public class JmsDemoServices {
+public class JmsStockListDemoService {
     private static Logger __log;
 
     private static String ERROR_NO_CONF = "Please specify a valid configuration file as parameter.\nProcess exits.\n";
@@ -100,7 +98,7 @@ public class JmsDemoServices {
 	        if (logConf != null) {
 	            try {
 	                DOMConfigurator.configureAndWatch(logConf, 10000);
-	                __log = Logger.getLogger(JmsDemoServices.class);
+	                __log = Logger.getLogger(JmsStockListDemoService.class);
 	                
 	            } catch (Exception ex) {
 	                ex.printStackTrace();
@@ -113,7 +111,7 @@ public class JmsDemoServices {
 	            throw new IllegalStateException(ERROR_LOG_CONF);
 	        }
 	
-	        __log.info("Demo services starting. Loading configuration...");
+	        __log.info("StockList Demo service starting. Loading configuration...");
 	        
 	        // Read parameters
 	        String jmsUrl= getParam(params, "jmsUrl", true, null);
@@ -121,31 +119,21 @@ public class JmsDemoServices {
             String connectionFactory= getParam(params, "connectionFactory", true, null);
             String stocksTopicName= getParam(params, "stocksTopicName", true, null);
             String stocksQueueName= getParam(params, "stocksQueueName", true, null);
-            String portfolioTopicName= getParam(params, "portfolioTopicName", true, null);
-            String portfolioQueueName= getParam(params, "portfolioQueueName", true, null);
-            String chatTopicName= getParam(params, "chatTopicName", true, null);
-            String chatQueueName= getParam(params, "chatQueueName", true, null);
             
-            // Check for stocks only-mode
-            boolean stocksOnly= false;
-            if (args.length > 1) {
-            	if (args[1].equals("-stocksOnly"))
-            		stocksOnly= true;
-            }
-	
-	        // Create our services passing read parameters
+	        // Create our service passing read parameters
             new StockListService(__log, jmsUrl, initialContextFactory, connectionFactory, stocksTopicName, stocksQueueName);
-            
-            if (!stocksOnly) {
-            	new PortfolioService(__log, jmsUrl, initialContextFactory, connectionFactory, portfolioTopicName, portfolioQueueName);
-            	new SimpleChatService(__log, jmsUrl, initialContextFactory, connectionFactory, chatTopicName, chatQueueName);
-            }
 	
-	        __log.info("Demo services ready.");
+	        __log.info("StockList Demo service ready.");
+	        
+	        // Avoid termination
+	        Object semaphore= new Object();
+	        synchronized (semaphore) {
+	        	semaphore.wait();
+	        }
 	      
     	} catch (Exception e) {
     		if (__log != null)
-    			__log.error("Exception caught while starting Demo services: " + e.getMessage(), e);
+    			__log.error("Exception caught while starting StockList Demo service: " + e.getMessage(), e);
     		
     		e.printStackTrace();
     	}

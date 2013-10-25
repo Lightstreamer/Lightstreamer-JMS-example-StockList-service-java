@@ -213,3 +213,12 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+# SVN
+.svn/
+
+build_resources
+lib/log4j-1.2.15.jar
+lib/jms.jar
+lib_test
+deploy.zip
