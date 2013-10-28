@@ -69,30 +69,32 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 2) Copy "jbossall-client.jar" from "JBossHome/client/". You will need to paste it later.
 
-## The JMS Gateway adapter ##
-
-Please copy from the [JMS Gateway zip](http://www.lightstreamer.com/download) file the adapter directory ("JMSGateway") under "LightstreamerHome/adapters" directory. Paste previously copied jars under JMSGateway/lib.
-
-Please also download the JMS distribution version 1.1 from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
-Extract its content and find the jms.jar file under the lib directory. Please copy this jar under JMSGateway/lib.
-
-Since the adapter will be receiving object messages coming from the generator, you need also to copy its JMSStockListDemoService.jar file under "JMSGateway/lib". It can be found under "JMS_StockList_Demo_Service/lib" from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project.
-If you later plan to use object messages with your custom created objects, remember to also add their jar files under JMSGateway/lib.
-
-Now open and configure JMSGateway/adapters.xml: you will find 4 sample data adapters configured for each of the 4 JMS brokers above. Find yours, enable it by changing the "disabled" param and set specific connection parameters (hostname, port, etc.).
-
-Finally check the adapter log configuration file to specify logging level and destination.
-
-## The Demo Services ##
+## The Demo Service ##
 
 Please copy the "JMS_StockList_Demo_Service" directory from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project anywhere in your file system, and put previously copied jars under its lib subdirectory.
-Please copy here also the jms.jar obtained from Oracle's Java website.
+
+Please also download the JMS distribution version 1.1 from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
+Extract its content and find the jms.jar file under the lib directory. Please copy this jar under the lib subdirectory.
 
 Then configure the launch script start_stocklist_demo_service.bat (or start_stocklist_demo_service.sh if you are under Linux or Mac OS X), adding all the JMS broker-specific jars to the CUSTOM_JARS variable. It is preset with jars for HornetQ.
 
 Now you should edit the configuration file. The included demo_service.conf file shows all available parameters and 4 sample configuration for the 4 JMS brokers above. Note that all parameters are required.
 
 Finally check the log4j configuration file.
+
+Once everything is configured, launch the service with start_stocklist_demo_service.bat (or start_stocklist_demo_service.sh if you are under Linux or Mac OS X). The service must be running for the StockList Demo Client to function properly.
+
+## Running the Demo ##
+
+The JMS Gateway StockList Demo requires the following components to be
+configured and running in order to function properly:
+
+* a JMS broker;
+* this Service;
+* a Lightstreamer instance running a properly configured JMS Gateway;
+* the StockList Demo Client.
+
+Please refer to Lightstreamer web site [download page](http://www.lightstreamer.com/download) to find Lightstreamer and JMS Gateway download packages. See below for the Client part of this Demo and other Demos for the JMS Gateway.
 
 # See Also #
 
