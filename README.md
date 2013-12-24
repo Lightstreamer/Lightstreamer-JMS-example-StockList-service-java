@@ -1,5 +1,7 @@
 # Lightstreamer JMS Gateway - Stock-List Demo - Java (JMS) Service #
 
+<!-- START DESCRIPTION lightstreamer-jms-example-stocklist-service-java -->
+
 This project contains the source code and all the resources needed to install the StockList Demo Service for Lightstreamer JMS Gateway.<br>
 
 Check out the sources for further explanations.
@@ -8,6 +10,7 @@ Check out the sources for further explanations.
 
 If you want to skip the build process of this Service please note that in the [deploy release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project you can find the "deploy.zip" file that contains a ready-made deployment resource for the Lightstreamer server.<br>
 
+<!-- END DESCRIPTION lightstreamer-jms-example-stocklist-service-java -->
 # Deploy #
 
 In order to install the example you have to configure a JMS broker and deploy the service components.
@@ -99,8 +102,10 @@ Please refer to Lightstreamer web site [download page](http://www.lightstreamer.
 # See Also #
 
 ## Clients using this Service ##
+<!-- START RELATED_ENTRIES -->
 * [Lightstreamer JMS Gateway - Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-JMS-example-StockList-client-javascript)
 
+<!-- END RELATED_ENTRIES -->
 ## Related projects ##
 * [Lightstreamer - Stock-List Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java)
 * [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
