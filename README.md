@@ -15,7 +15,7 @@ If you want to skip the build process of this Service please note that in the [d
 
 In order to install the example you have to configure a JMS broker and deploy the service components.
 
-## JMS broker ##
+## JMS Broker ##
 
 You can choose a JMS broker to be used for this example. We will show 4 examples using <b>HornetQ (AKA JBoss Messaging)</b>, <b>TIBCO EMS</b>, <b>Apache ActiveMQ</b> and <b>JBossMQ</b>.<br>
 Once you have selected and installed your JMS broker, you will have to configure it accordingly to other components, in particular:
@@ -101,12 +101,12 @@ Please refer to Lightstreamer web site [download page](http://www.lightstreamer.
 
 # See Also #
 
-## Clients using this Service ##
+## Clients Using This Service ##
 <!-- START RELATED_ENTRIES -->
 * [Lightstreamer JMS Gateway - Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-JMS-example-StockList-client-javascript)
 
 <!-- END RELATED_ENTRIES -->
-## Related projects ##
+## Related Projects ##
 * [Lightstreamer - Stock-List Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java)
 * [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
 * [Lightstreamer JMS Gateway - Portfolio Demo - Java (JMS) Service](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java)
