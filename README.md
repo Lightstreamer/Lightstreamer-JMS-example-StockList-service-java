@@ -81,7 +81,7 @@ Once everything is configured, launch the service with `start_stocklist_demo_ser
 
 ### Running the Demo
 
-The JMS Gateway StockList Demo requires a Lightstreamer instance running a properly configured JMS Gateway. Please refer to Lightstreamer web site [download page](http://download.lightstreamer.com/) to find Lightstreamer and JMS Gateway download packages.
+The JMS Gateway StockList Demo requires a Lightstreamer instance running a properly configured *JMS Gateway*. Please refer to Lightstreamer web site [download page](http://download.lightstreamer.com/) to find *Lightstreamer server* and *JMS Gateway* download packages.
 
 Now you can test this demo runnig the [Lightstreamer JMS Gateway - Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-JMS-example-StockList-client-javascript).
 
@@ -89,7 +89,7 @@ Now you can test this demo runnig the [Lightstreamer JMS Gateway - Basic Stock-L
 
 To build your own version of `JMSStockListDemoService.jar`, instead of using the ones provided in the `deploy.zip` file from the Install section above, follow these steps:
 
-* Get the `log4j-1.2.15.jar` files from the `/shared/lib/` folder of the [latest Lightstreamer distribution](http://download.lightstreamer.com/#current) and put these files into `lib` folder of this project.
+* Get the `log4j-1.2.15.jar` file from the `/shared/lib/` folder of the [latest Lightstreamer distribution](http://download.lightstreamer.com/#current) and put it into `lib` folder of this project.
 * Make sure that the `jms.jar` file was copied into `lib` folder of this project as from the Install section above.
 * Create the jar `JMSStockListDemoService.jar` with commands like these:
 ```cmd
