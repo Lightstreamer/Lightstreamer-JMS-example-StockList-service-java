@@ -71,7 +71,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 To configure the demo service  follow these steps::
 * Please copy the `JMS_StockList_Demo_Service` directory, you can find in the `deploy.zip` file from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project, anywhere in your file system, and put previously copied jars under its `lib` subdirectory.
-* Please also download the JMS distribution version 1.1 from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [http://www.oracle.com/technetwork/java/docs-136352.html](http://www.oracle.com/technetwork/java/docs-136352.html).
+* Please also download the JMS distribution (version 1.1 or 2.0 depending on the broker version in use) from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [v1.1](http://www.oracle.com/technetwork/java/docs-136352.html) [v2.0](https://mq.java.net/downloads/ri/).
 * Extract its content and find the `jms.jar` file under the `lib` directory. Please copy this jar under the `lib` subdirectory of the Demo Service.
 * Then configure the launch script `start_stocklist_demo_service.bat` (or` start_stocklist_demo_service.sh` if you are under Linux or Mac OS X), adding all the JMS broker-specific jars to the CUSTOM_JARS variable. <i>It is preset with jars for HornetQ</i>.
 * Now you should edit the configuration file. The included `demo_service.conf` file shows all available parameters and 4 sample configuration for the 4 JMS brokers above. Note that all parameters are required.
