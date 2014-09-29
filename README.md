@@ -19,7 +19,7 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 #### HornetQ (AKA JBoss Messaging)
 
-1) You should configure a topic and a queue. Open the `hornetq-jms.xml` located under [HornetQHome](http://www.jboss.org/hornetq)`/config/stand-alone/non-clustered` and add the following nodes:
+1) You should configure a new topic. Open the `hornetq-jms.xml` located under [HornetQHome](http://www.jboss.org/hornetq)`/config/stand-alone/non-clustered` and add the following nodes:
 
 ```xml
 
@@ -27,17 +27,13 @@ Once you have selected and installed your JMS broker, you will have to configure
       <entry name="stocksTopic"/>
    </topic>
 
-   <queue name="stocksQueue">
-      <entry name="stocksQueue"/>
-   </queue>
-
 ```
 
 2) Copy the following jars: `hornetq-commons.jar`, `hornetq-core-client.jar`, `hornetq-jms-client.jar`, `jnp-client.jar` and `netty.jar` from `/HornetQHome/lib`. You will need to paste them later.
 
 #### TIBCO EMS
 
-1) You should create a topic and a queue. Open the `queues.conf` and `topics.conf` located under [EMSHome](http://www.tibco.com/products/automation/messaging/enterprise-messaging/enterprise-message-service/default.jsp)`/bin/` and append to them the lines containing (without apexes) *stocksQueue for `queues.conf` and *stocksTopic* for `topics.conf`.
+1) You should create a new topic. Open the `topics.conf` file located under [EMSHome](http://www.tibco.com/products/automation/messaging/enterprise-messaging/enterprise-message-service/default.jsp)`/bin/` and append to it *stocksTopic*.
 
 2) Copy `tibcrypt.jar`, `tibjms.jar` and `tibjmsufo.jar` from `EMSHome/clients/java`. You will need to paste them later.
 
@@ -49,18 +45,13 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 #### With JBossMQ
 
-1) You shold create a topic and a queue. Open the `jbossmq-destinations-service.xml` located under [JBossHome](http://www.jboss.org/products/amq)`/server/default/deploy/jms/` and add two mbean nodes as shown below:
+1) You shold create a new topic. Open the `jbossmq-destinations-service.xml` located under [JBossHome](http://www.jboss.org/products/amq)`/server/default/deploy/jms/` and add a mbean node as shown below:
 
 ```xml
 
 	<mbean code="org.jboss.mq.server.jmx.Topic"
 		name="jboss.mq.destination:service=Topic,name=stocksTopic">
 		<depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
-	</mbean>
-
-	<mbean code="org.jboss.mq.server.jmx.Queue"
-		name="jboss.mq.destination:service=Queue,name=stocksQueue">
-    	<depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
 	</mbean>
 
 ```
@@ -87,7 +78,7 @@ Now you can test this demo runnig the [Lightstreamer JMS Gateway - Basic Stock-L
 
 ## Build
 
-To build your own version of `JMSStockListDemoService.jar`, instead of using the ones provided in the `deploy.zip` file from the Install section above, follow these steps:
+To build your own version of `JMSStockListDemoService.jar`, instead of using the one provided in the `deploy.zip` file from the Install section above, follow these steps:
 
 * Get the `log4j-1.2.15.jar` file from the `/shared/lib/` folder of the [latest Lightstreamer distribution](http://download.lightstreamer.com/#current) and put it into `lib` folder of this project.
 * Make sure that the `jms.jar` file was copied into `lib` folder of this project as from the Install section above.
@@ -109,7 +100,6 @@ To build your own version of `JMSStockListDemoService.jar`, instead of using the
 * [Lightstreamer - Stock-List Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java)
 * [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
 * [Lightstreamer JMS Gateway - Portfolio Demo - Java (JMS) Service](https://github.com/Weswit/Lightstreamer-JMS-example-Portfolio-service-java)
-* [Lightstreamer JMS Gateway - Basic Chat Demo - Java (JMS) Service](https://github.com/Weswit/Lightstreamer-JMS-example-Chat-service-java)
 
 ## Lightstreamer Compatibility Notes
 
