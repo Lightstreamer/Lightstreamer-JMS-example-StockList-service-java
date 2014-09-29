@@ -117,10 +117,9 @@ public class JmsStockListDemoService {
             String initialContextFactory= getParam(params, "initialContextFactory", true, null);
             String connectionFactory= getParam(params, "connectionFactory", true, null);
             String stocksTopicName= getParam(params, "stocksTopicName", true, null);
-            String stocksQueueName= getParam(params, "stocksQueueName", true, null);
             
 	        // Create our service passing read parameters
-            new StockListService(__log, jmsUrl, initialContextFactory, connectionFactory, stocksTopicName, stocksQueueName);
+            new StockListService(__log, jmsUrl, initialContextFactory, connectionFactory, stocksTopicName);
 	
 	        __log.info("StockList Demo service ready.");
 	        

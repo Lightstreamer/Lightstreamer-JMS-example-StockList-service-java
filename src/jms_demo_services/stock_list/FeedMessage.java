@@ -32,18 +32,13 @@ public class FeedMessage implements Serializable {
     // An HashMap containing the updates for the item (the field names are the keys)
     public Map<String, String> currentValues = null;
 
-    // Indicate if the map carries the entire snapshot for the item
-    public boolean isSnapshot = false;
-
     // The id related to the handle of this item
     public String handleId = null;
     
     public FeedMessage() {}
 
-    public FeedMessage(String itemName, final Map<String, String> currentValues, boolean isSnapshot, String handleId) {
+    public FeedMessage(String itemName, final Map<String, String> currentValues) {
         this.itemName = itemName;
         this.currentValues = currentValues;
-        this.isSnapshot = isSnapshot;
-        this.handleId = handleId;
     }
 }

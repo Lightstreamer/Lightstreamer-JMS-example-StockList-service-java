@@ -151,9 +151,9 @@ public class FeedSimulator {
                 synchronized (producer) {
                     producer.computeNewValues();
                     
-                    if (_listener != null) 
-                        _listener.onFeedUpdate(producer.itemName, producer.getCurrentValues(false), false);
-
+                    if (_listener != null) {
+                        _listener.onFeedUpdate(producer.itemName, producer.getCurrentValues(), false);
+                    }
                     nextWaitTime = producer.computeNextWaitTime();
                 }
                 
@@ -162,30 +162,8 @@ public class FeedSimulator {
         	
         }, waitTime);
     }
-
-    /**
-     * Forces sending an event with a full snapshot for a stock.
-     */
-    public void sendCurrentValues(String itemName) {
-        for (int i = 0; i < 30; i++) {
-            final MyProducer myProducer = (MyProducer) _stockGenerators.get(i);
-            
-            if (myProducer.itemName.equals(itemName)) {
-                __dispatcher.schedule(new TimerTask() {
-                	
-                    public void run() {
-                        synchronized (myProducer) {
-                            _listener.onFeedUpdate(myProducer.itemName, myProducer.getCurrentValues(true), true);
-                        }
-                    }
-                
-                }, 0);
-                break;
-            }
-        }
-    }
-
-    /**
+    
+    /*
      * Manages the current state and generates update events
      * for a single stock.
      */
@@ -287,7 +265,7 @@ public class FeedSimulator {
          * HashMap. If fullData is false, then only the fields whose value
          * is just changed are considered (though this check is not strict).
          */
-        public Map<String, String> getCurrentValues(boolean fullData) {
+        public Map<String, String> getCurrentValues() {
             final HashMap<String,String> event = new HashMap<String,String>();
 
             String format = "HH:mm:ss";
@@ -311,21 +289,13 @@ public class FeedSimulator {
             event.put("ask_quantity", Integer.toString(quantity));
             double var = (last - ref) / (double) ref * 100;
             addDecField("pct_change", (int) (var * 100), event);
+            addDecField("min", min, event);
+            addDecField("max", max, event);
             
-            if ((last == min) || fullData) {
-                addDecField("min", min, event);
-            }
-            
-            if ((last == max) || fullData) {
-                addDecField("max", max, event);
-            }
-            
-            if (fullData) {
-                event.put("stock_name", stockName);
-                addDecField("ref_price", ref, event);
-                addDecField("open_price", open, event);
-                event.put("item_status","active");
-            }
+            event.put("stock_name", stockName);
+            addDecField("ref_price", ref, event);
+            addDecField("open_price", open, event);
+            event.put("item_status","active");
             
             return event;
         }
