@@ -15,7 +15,7 @@ If you want to install a version of this demo pointing to your local *Lightstrea
 This demo needs a JMS infrastructure to run. You can choose whatever JMS broker you prefer to be used for this example. We will show 4 examples using <b>HornetQ (AKA JBoss Messaging)</b>, <b>TIBCO EMS</b>, <b>Apache ActiveMQ</b>, and <b>JBossMQ</b>.<br>
 Once you have selected and installed your JMS broker, you will have to configure it accordingly to other components, in particular:
 * You will have to copy JMS broker-specific jars in the adapter directory and in the data generator directory.
-* You will have to select the specific connection parameters in the adapter configuration, the data generator and the demo page.
+* You will have to select the specific connection parameters in the adapter configuration, the data generator, and the demo page.
 
 #### HornetQ (AKA JBoss Messaging)
 
@@ -39,9 +39,9 @@ Once you have selected and installed your JMS broker, you will have to configure
 
 #### With Apache ActiveMQ
 
-1) There's no need to create topics or queues, since [ActiveMQ](http://activemq.apache.org/) supports dynamic configuration of destinations.
+1) There's no need to create topics or queues, because [ActiveMQ](http://activemq.apache.org/) supports dynamic configuration of destinations.
 
-2) Copy the following jars: `activemq-core-5.6.0.jar`, `geronimo-j2ee-management_1.1_spec-1.0.1.jar` and `slf4j-api-1.6.4.jar`, from `/ActiveMQHome/lib`, changing the version number accordingly to your installation. You will need to paste them later.
+2) Copy the following jars: `activemq-core-5.6.0.jar`, `geronimo-j2ee-management_1.1_spec-1.0.1.jar`, and `slf4j-api-1.6.4.jar`, from `/ActiveMQHome/lib`, changing the version number accordingly to your installation. You will need to paste them later.
 
 #### With JBossMQ
 
@@ -61,12 +61,12 @@ Once you have selected and installed your JMS broker, you will have to configure
 ### Deploy the Demo Service
 
 To configure the demo service, follow these steps:
-* Copy the `JMS_StockList_Demo_Service` directory, you can find in the `deploy.zip` file from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project, anywhere in your file system, and put previously copied jars under its `lib` subdirectory.
+* Copy the `JMS_StockList_Demo_Service` directory you can find in the `deploy.zip` file from the [latest release](https://github.com/Weswit/Lightstreamer-jms-example-StockList-service-java/releases) of this project, anywhere in your file system, and put previously copied jars under its `lib` subdirectory.
 * Download the JMS distribution (version 1.1 or 2.0 depending on the broker version in use) from Oracle's Java website. It cannot be distributed with the JMS Gateway for licensing issues. It can be found here: [v1.1](http://www.oracle.com/technetwork/java/docs-136352.html) [v2.0](https://mq.java.net/downloads/ri/).
 * Extract its content and find the `jms.jar` file under the `lib` directory. Please copy this jar under the `lib` subdirectory of the Demo Service.
-* Then, configure the launch script `start_stocklist_demo_service.bat` (or` start_stocklist_demo_service.sh` if you are under Linux or Mac OS X), adding all the JMS broker-specific jars to the CUSTOM_JARS variable. <i>It is preset with jars for HornetQ</i>.
+* Then, configure the launch script `start_stocklist_demo_service.bat` (or` start_stocklist_demo_service.sh`, if you are under Linux or Mac OS X), adding all the JMS broker-specific jars to the CUSTOM_JARS variable. <i>It is preset with jars for HornetQ</i>.
 * Now you should edit the configuration file. The included `demo_service.conf` file shows all available parameters and 4 sample configuration for the 4 JMS brokers above. Note that all parameters are required.
-* Finally check the log4j configuration file.
+* Finally, check the log4j configuration file.
 
 Once everything is configured, launch the service with `start_stocklist_demo_service.bat` (or `start_stocklist_demo_service.sh` if you are under Linux or Mac OS X). The service must be running for the StockList Demo Client to function properly.
 
