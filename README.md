@@ -72,7 +72,8 @@ Once everything is configured, launch the service with `start_stocklist_demo_ser
 
 ### Running the Demo
 
-The JMS Gateway StockList Demo requires a Lightstreamer instance running a properly configured *JMS Gateway*. Please refer to Lightstreamer web site [download page](http://download.lightstreamer.com/) to find *Lightstreamer server* and *JMS Gateway* download packages.
+* The JMS Gateway StockList Demo requires a Lightstreamer instance running a properly configured *JMS Gateway*. Please refer to Lightstreamer web site [download page](http://download.lightstreamer.com/) to find *Lightstreamer server* and *JMS Gateway* download packages.
+* * Now grab the jar of the service, `JMSStockListDemoService.jar`, and copy it under the lib folder of the JMSGateway adapter just deployed. This is needed since the Gateway must be able to create any object sent or received by its clients. In this case the gateway requires the declaration of the `FeedMessage` class.
 
 Now you can test this demo running the [Lightstreamer JMS Gateway - Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-JMS-example-StockList-client-javascript).
 
