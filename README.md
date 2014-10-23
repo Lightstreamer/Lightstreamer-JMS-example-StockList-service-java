@@ -113,5 +113,5 @@ To build your own version of `JMSStockListDemoService.jar`, instead of using the
 
 ## Lightstreamer Compatibility Notes
 
-* Compatible with Lightstreamer SDK for Java Adapters since 5.1
+* Compatible with Lightstreamer SDK for Java In-Process Adapters since 5.1
 * Compatible with Lightstreamer JMS Gateway Adapter since version 1.0 or newer.
