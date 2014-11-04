@@ -81,11 +81,11 @@ Now you can test this demo running the [Lightstreamer JMS Gateway - Basic Stock-
 
 To build your own version of `JMSStockListDemoService.jar`, instead of using the ones provided in the `deploy.zip` file from the Install section above, follow these steps:
 
-* Get the `log4j-1.2.15.jar` file from the `/shared/lib/` folder of the [latest Lightstreamer distribution](http://download.lightstreamer.com/#current) and put it into `lib` folder of this project.
+* Get the `log4j-1.2.17.jar` file from [Apache log4j](https://logging.apache.org/log4j/1.2/) and copy it into the `lib` folder.
 * Make sure that the `jms.jar` file was copied into `lib` folder of this project as from the Install section above.
 * Create the jar `JMSStockListDemoService.jar` with commands like these:
 ```cmd
- >javac -source 1.6 -target 1.6 -nowarn -g -classpath lib/log4j-1.2.15.jar;lib/jms.jar -sourcepath src/ -d tmp_classes src/jms_demo_services/JmsStockListDemoService.java
+ >javac -source 1.6 -target 1.6 -nowarn -g -classpath lib/log4j-1.2.17.jar;lib/jms.jar -sourcepath src/ -d tmp_classes src/jms_demo_services/JmsStockListDemoService.java
 
  >jar cvf JMSStockListDemoService.jar -C tmp_classes jms_demo_services
 ```

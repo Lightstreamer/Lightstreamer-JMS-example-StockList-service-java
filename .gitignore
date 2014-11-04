@@ -218,7 +218,6 @@ pip-log.txt
 .svn/
 
 build_resources
-lib/log4j-1.2.15.jar
-lib/jms.jar
+compile_libs
 lib_test
 deploy.zip
