@@ -221,3 +221,5 @@ build_resources
 compile_libs
 lib_test
 deploy.zip
+lib/jms.jar
+lib/log4j-1.2.15.jar
