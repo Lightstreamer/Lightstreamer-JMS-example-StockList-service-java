@@ -2,7 +2,11 @@
 
 <!-- START DESCRIPTION lightstreamer-jms-example-stocklist-service-java -->
 
-This project contains the source code and all the resources needed to install the StockList Demo Service for Lightstreamer JMS Extender.
+This project contains the source code and all the resources needed to install the Stock-List Demo Service for Lightstreamer JMS Extender.
+
+The Stock-List Demo Service is stand-alone Java application that acts as a service, sending simulated stock quotes on a JMS topic. It provides data for client-side Stock-List Demos for JMS Extender, such as the [HTML Demo](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript) and the [Node.js Demo](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-node).
+
+Note that this service makes no use of the JMS Extender APIs: it works by using directly the JMS APIs. For simplicity, a single JMS topic is used for all stocks, while in a production environment you would probably use a different JMS topic for each stock.
 
 Check out the sources for further explanations.
 
@@ -94,6 +98,7 @@ To build your own version of `JMSStockListDemoService.jar`, instead of using the
 ### Clients Using This Service
 <!-- START RELATED_ENTRIES -->
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript)
+* [Lightstreamer JMS Extender - Basic Stock-List Demo - Node.js Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-node)
 
 <!-- END RELATED_ENTRIES -->
 ### Related Projects
