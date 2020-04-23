@@ -73,7 +73,7 @@ Moreover, the `build/deploy` folder will be populated with all the jar files to 
 From the `build/install/stocklist_demo_service` directory, run the start script to start sending simulated messages to the JMS broker:
 
 ```sh
-./bin/stocklist_demo_service
+$ ./bin/stocklist_demo_service
 ```
 
 ### Set up Lightstreamer JMS Extender
@@ -82,7 +82,7 @@ From the `build/install/stocklist_demo_service` directory, run the start script 
 
 2. Now copy the jar files from `build/deploy` under the `<JMS_EXTENDER_HOME>/jms_connectors/lib` folder.
 
-3. Configure Edit the `<JMS_EXTENDER_HOME>/jms_connectors/jms_connectors_conf.xml` file, ensuring that the sample JMS connector configuration relative to the selected JMS broker is enabled. In particular, check that the `disabled` parameter is set to `false`:
+3. Edit the `<JMS_EXTENDER_HOME>/jms_connectors/jms_connectors_conf.xml` file, ensuring that the sample JMS connector configuration relative to the selected JMS broker is enabled. In particular, check that the `disabled` parameter is set to `false`:
 
     ```xml
     <param name="disabled">false</param>
