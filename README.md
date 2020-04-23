@@ -69,7 +69,7 @@ Moreover, the `build/deploy` folder will be populated with all the jar files to 
 
 ### Start the Demo Service
 
-From the `build/install/stocklist_demo_service` directory, run the start script to start sending simulated messages to the JMS broker:
+From the `build/install/stocklist_demo_service` directory, run the launch script to start sending simulated messages to the JMS broker:
 
 ```sh
 $ ./bin/stocklist_demo_service
