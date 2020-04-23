@@ -40,6 +40,9 @@ There's no need to create topics or queues, because [ActiveMQ Artemis](http://ac
 2. Copy `tibjms.jar` from `<EMSHome>/lib` to the `local_libs` folder.
 
 
+_Note_: In the case of a different JMS broker, please follow the relative instructions on how to properly configure a topic. Furthermore, add an entry to the `dependencies` section in the `build.gradle` (read the
+inline comments for more details).
+
 ### Configure the Demo Service
 
 To configure the demo service, follow these steps:
@@ -61,8 +64,7 @@ where the `broker` property can be:
 * `ActiveMQ`
 * `Artemis`
 * `TIBCO`
-
-according to the selected JMS broker.
+* the `<JMS_BROKER>` string you specified in the he `dependencies` section of `build.gradle` in the case of different JMS broker.
 
 The `buildDemo` task will create a distribution of the project under the `build/install/stocklist_demo_service` folder, from which you can start the service. 
 
@@ -87,6 +89,7 @@ $ ./bin/stocklist_demo_service
     ```xml
     <param name="disabled">false</param>
     ```
+    **_NOTE_**: Add a new JMS connector configuration in the case of a not listed different JMS broker: see the inline comments for details.
 
 Now you can test this demo running the [Lightstreamer JMS Extender - Basic Stock-List Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript).
 
@@ -107,4 +110,4 @@ Now you can test this demo running the [Lightstreamer JMS Extender - Basic Stock
 
 ## Lightstreamer Compatibility Notes
 
-* Compatible with Lightstreamer JMS Extender since version 1.5 or newer.
+* Compatible with Lightstreamer JMS Extender since version 2.0.0 or newer.
