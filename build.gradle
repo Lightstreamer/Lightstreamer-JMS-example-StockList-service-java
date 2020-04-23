@@ -33,29 +33,37 @@ dependencies {
             runtimeOnly files('local_libs/tibjms.jar') 
             break;
 
-        case "Broker-J":
-            runtimeOnly 'org.apache.qpid:qpid-jms-client:0.50.0'
+        /* In case of different broker, please add a new 'case' here:
+        case "<JMS_BROKER>":
+            runtimeOnly '<DEP1>'
+            ...
+            runtimeOnly '<DEP_N>'
+
             break;
+
+        where:
+            JMS_BROKER is a generic string that identifies the broker for which this build is targeted. 
+            DEP_X is the reference to the JMS broker-specific java library. If the library is not available
+            on JCenter, please copy it under the "local_libs" folder, as already done with TIBCO.
+        */
         
         default:
-            println "No broker defines"
+            println "No broker definition"
     }
 }
 
-group = 'jmsex_demo_services'
 version = '2.0.0'
 sourceCompatibility = '1.8'
+mainClassName = "jms_demo_services.App"
 
-mainClassName = "jms_demo_services.JmsStockListDemoService"
-
-task feedMessageJar(type:Jar, dependsOn: classes) {
+task makeFeedMessageJar(type:Jar, dependsOn: classes) {
     baseName = commonJarName
     from sourceSets.main.output.classesDirs.filter {
         include '**/FeedMessage.class'
     }
 }
 
-task brokerLibs(type: Copy, dependsOn: [feedMessageJar, installDist]) {
+task buildDemo(type: Copy, dependsOn: [makeFeedMessageJar, installDist]) {
     description 'Copies the jar files to the lib/log folder of the source docker image directory.'
     from ("$buildDir/install/$project.name/lib") {
         exclude "javax.jms-api-*.jar"
@@ -67,6 +75,6 @@ task brokerLibs(type: Copy, dependsOn: [feedMessageJar, installDist]) {
         include "$commonJarName-*.jar"
     }
     
-    into "$buildDir/brokersLib"
+    into "$buildDir/$deployDir"
 }
 
