@@ -27,6 +27,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Simulates a data feed that supplies quote values for all the
@@ -34,15 +37,15 @@ import java.util.TimerTask;
  */
 public class FeedSimulator {
 
-  private static final Timer __dispatcher = new Timer();
+  private static final ScheduledExecutorService dispatcher = Executors.newScheduledThreadPool(2);
 
   private static final Random __random = new Random();
 
-  /**
-   * Used to automatically generate the updates for the 30 stocks:
-   * mean and standard deviation of the times between consecutive
-   * updates for the same stock.
-   */
+    /**
+     * Used to automatically generate the updates for the 30 stocks:
+     * mean and standard deviation of the times between consecutive
+     * updates for the same stock.
+     */
     private static final double[] UPDATE_TIME_MEANS = {30000, 500, 3000, 90000,
                                                      7000, 10000, 3000, 7000,
                                                      7000, 7000, 500, 3000,
@@ -61,7 +64,7 @@ public class FeedSimulator {
                                                          6000, 300, 1000, 1000,
                                                          4000, 1000, };
 
-    /**
+  /**
    * Used to generate the initial field values for the 30 stocks.
    */
   private static final double[] REF_PRICES = {3.04, 16.09, 7.19, 3.63, 7.61,
@@ -115,52 +118,46 @@ public class FeedSimulator {
   /**
    * Used to keep the contexts of the 30 stocks.
    */
-  private final List<MyProducer> _stockGenerators = new ArrayList<MyProducer>();
-
-  private FeedListener _listener;
+  private final List<MyProducer> stockGenerators = new ArrayList<MyProducer>();
 
   /**
-   * Starts generating update events for the stocks. Sumulates attaching and reading from an
+   * The internal listener for the update events.
+   */
+  private final FeedListener listener;
+
+  public FeedSimulator(FeedListener listener) {
+    this.listener = listener;
+  }
+
+  /**
+   * Starts generating update events for the stocks. Simulates attaching and reading from an
    * external broadcast feed.
    */
   public void start() {
     for (int i = 0; i < 30; i++) {
       MyProducer myProducer = new MyProducer("item" + (i + 1), i);
-      _stockGenerators.add(myProducer);
+      stockGenerators.add(myProducer);
       long waitTime = myProducer.computeNextWaitTime();
       scheduleGenerator(myProducer, waitTime);
     }
   }
 
   /**
-   * Sets an internal listener for the update events. Since now, the update events were ignored.
-   */
-  public void setFeedListener(FeedListener listener) {
-    _listener = listener;
-  }
-
-  /**
    * Generates new values and sends a new update event at the time the producer declared to do it.
    */
-  private void scheduleGenerator(final MyProducer producer, long waitTime) {
-    __dispatcher.schedule(new TimerTask() {
+  private void scheduleGenerator(final MyProducer producer, long waitTimeMillis) {
+    dispatcher.schedule(() -> {
+      long nextWaitTime = 0;
 
-      public void run() {
-        long nextWaitTime = 0;
+      synchronized (producer) {
+        producer.computeNewValues();
 
-        synchronized (producer) {
-          producer.computeNewValues();
-
-          if (_listener != null) {
-            _listener.onFeedUpdate(producer.itemName, producer.getCurrentValues(), false);
-          }
-          nextWaitTime = producer.computeNextWaitTime();
-        }
-
-        scheduleGenerator(producer, nextWaitTime);
+        listener.onFeedUpdate(producer.itemName, producer.getCurrentValues(), false);
+        nextWaitTime = producer.computeNextWaitTime();
       }
 
-    }, waitTime);
+      scheduleGenerator(producer, nextWaitTime);
+    }, waitTimeMillis, TimeUnit.MILLISECONDS);
   }
 
   /*
@@ -170,11 +167,13 @@ public class FeedSimulator {
 
     private final String itemName;
 
-    private int open, ref, last, min, max, other;
+    private final String stockName;
 
-    private double mean, stddev;
+    private final int open, ref;
 
-    private String stockName;
+    private final double mean, stddev;
+
+    private int last, min, max, other;
 
     /**
      * Initializes stock data based on the already prepared values.
