@@ -44,8 +44,7 @@ public class StockListService implements FeedListener {
     stocksTopicWrapper = new JmsWrapper(config);
 
     // Instantiate and start the simulator. This is the object that "produce" data
-    feedSimulator = new FeedSimulator();
-    feedSimulator.setFeedListener(this);
+    feedSimulator = new FeedSimulator(this);
   }
 
   public void start() {
