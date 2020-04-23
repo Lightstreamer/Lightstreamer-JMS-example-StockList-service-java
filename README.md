@@ -12,16 +12,13 @@ Check out the sources for further explanations.
 
 ## Install
 
-If you want to install a version of this demo pointing to your local [Lightstreamer JMS Extender](http://download.lightstreamer.com/#jms), you have to configure a JMS broker and deploy the service components. Please follow these steps:
+If you want to install a version of this demo pointing to your local [Lightstreamer JMS Extender](http://download.lightstreamer.com/#jms), follow these steps:
 
 ### Configure the JMS Broker
 
-This demo needs a JMS infrastructure to run. You can choose whatever JMS broker you prefer to be used for this example. We will show 3 examples using **Apache ActiveMQ**, **Apache ActiveMQ Artemis**, and **TIBCO EMS**.
-
-Once you have selected and installed your JMS broker, you will have to configure it accordingly to other components, in particular:
-
-* You will have to copy JMS broker-specific jars in the connector directory and in the data generator directory.
-* You will have to select the specific connection parameters in the connector configuration, the data generator, and the demo page.
+As prerequisite, this demo needs a JMS infrastructure to run.
+You can choose whatever JMS broker you prefer to be used for this example.
+We will show 3 examples using **Apache ActiveMQ**, **Apache ActiveMQ Artemis**, and **TIBCO EMS**:
 
 #### Apache ActiveMQ
 
