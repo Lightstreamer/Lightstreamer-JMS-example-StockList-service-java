@@ -75,6 +75,9 @@ From the `build/install/stocklist_demo_service` directory, run the launch script
 $ ./bin/stocklist_demo_service
 ```
 
+or launch `bin/stocklist/stocklist_demo_service.bat` on Windows systems.
+
+
 ### Set up Lightstreamer JMS Extender
 
 1. The JMS Extender StockList Demo requires a Lightstreamer JMS Extender instance running. Please refer to Lightstreamer web site [download page](http://download.lightstreamer.com/) to find Lightstreamer JMS Extender download packages.
