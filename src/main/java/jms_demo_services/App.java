@@ -28,9 +28,6 @@ public class App {
 
   private static Logger log = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Main method. Called by script.
-   */
   public static void main(String[] args) {
     try (InputStream is = App.class.getResourceAsStream("/service.conf")) {
       log.info("StockList Demo service starting. Loading configuration...");
