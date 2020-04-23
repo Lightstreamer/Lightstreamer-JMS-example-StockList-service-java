@@ -13,7 +13,7 @@
  * the License.
  */
 
-package jms_demo_services.stock_list;
+package jms_demo_services.stocklist;
 
 import java.util.Map;
 

@@ -13,7 +13,7 @@
  * the License.
  */
 
-package jms_demo_services;
+package jms_demo_services.stocklist;
 
 import java.io.Serializable;
 import java.util.Properties;
@@ -22,12 +22,9 @@ import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -35,11 +32,13 @@ import javax.naming.NamingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jms_demo_services.config.Configuration;
+
 /**
  * This object can handle: 1 MessageConsumer and 1 MessageProducer related to the same destination
  * Session and Connection are shared between instances.
  */
-public class JmsWrapper {
+class JmsWrapper {
   private static Logger log = LoggerFactory.getLogger(JmsWrapper.class);
 
   private final Configuration config;
@@ -54,14 +53,14 @@ public class JmsWrapper {
 
   private MessageProducer producer;
 
-  public JmsWrapper(Configuration config) {
+  JmsWrapper(Configuration config) {
     this.config = config;
 
     // Prepare a Properties object to be passed to the InitialContext
     // constructor giving the InitialContextFactory name and the JMS broker url
     Properties properties = new Properties();
     properties.put(Context.INITIAL_CONTEXT_FACTORY, config.initialContextFactory);
-    properties.put(Context.PROVIDER_URL, config.providerURL);
+    properties.put(Context.PROVIDER_URL, config.jmsUrl);
 
     try {
       jndiContext = new InitialContext(properties);
@@ -131,10 +130,6 @@ public class JmsWrapper {
 
     // Fill it with object (our message to be sent)
     objMessage.setObject(obj);
-
-    // Check if MessageProducer is ready
-    if (producer == null)
-      throw new JMSException("Message producer not not ready");
 
     log.debug("Sending message object " + obj);
 

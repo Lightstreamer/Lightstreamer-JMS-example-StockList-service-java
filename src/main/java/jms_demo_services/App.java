@@ -21,31 +21,32 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jms_demo_services.stock_list.StockListService;
+import jms_demo_services.config.Configuration;
+import jms_demo_services.stocklist.StockListService;
 
-public class JmsStockListDemoService {
+public class App {
 
-  private static Logger log = LoggerFactory.getLogger("jms_demo_services");
+  private static Logger log = LoggerFactory.getLogger(App.class);
 
   /**
    * Main method. Called by script.
    */
   public static void main(String[] args) {
-    try (InputStream is = JmsStockListDemoService.class.getResourceAsStream("/demo_service.conf")) {
+    try (InputStream is = App.class.getResourceAsStream("/service.conf")) {
       log.info("StockList Demo service starting. Loading configuration...");
 
-      Properties ip = new Properties();
-      ip.load(is);
+      Properties props = new Properties();
+      props.load(is);
 
       // Read parameters
       //@formatter:off
       Configuration config =  new Configuration.Builder()
-          .withProviderURL(ip.getProperty("jmsUrl"))
-          .withInitialiContextFactory(ip.getProperty("initialContextFactory"))
-          .withConnectionFactoryName(ip.getProperty("connectionFactory"))
-          .withTopic(ip.getProperty("topic"))
-          .withCredentials(ip.getProperty("user"), ip.getProperty("password"))
-          .build();
+        .withJmsURL(props.getProperty("jmsUrl"))
+        .withInitialiContextFactory(props.getProperty("initialContextFactory"))
+        .withConnectionFactoryName(props.getProperty("connectionFactoryName"))
+        .withTopic(props.getProperty("topic"))
+        .withCredentials(props.getProperty("user"), props.getProperty("password"))
+        .build();
       //@formatter:on
 
       // Create and start our service passing the supplied configuration

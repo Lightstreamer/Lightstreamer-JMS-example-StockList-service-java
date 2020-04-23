@@ -13,18 +13,16 @@
  * the License.
  */
 
-package jms_demo_services.stock_list;
+package jms_demo_services.stocklist;
 
 import java.util.Map;
 
 import javax.jms.JMSException;
-import javax.naming.NamingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jms_demo_services.Configuration;
-import jms_demo_services.JmsWrapper;
+import jms_demo_services.config.Configuration;
 
 
 public class StockListService implements FeedListener {
@@ -42,7 +40,6 @@ public class StockListService implements FeedListener {
   private FeedSimulator feedSimulator;
 
   public StockListService(Configuration config) {
-
     // Instantiate a JMSWrapper for stocks topic
     stocksTopicWrapper = new JmsWrapper(config);
 
@@ -71,10 +68,8 @@ public class StockListService implements FeedListener {
     try {
       // Publish the update to JMS
       stocksTopicWrapper.sendObjectMessage(toSend);
-
     } catch (JMSException je) {
-      je.printStackTrace();
-      log.error("Stock List: unable to send message - JMSException:" + je.getMessage());
+      log.error("Stock List: unable to send message", je);
     }
   }
 }

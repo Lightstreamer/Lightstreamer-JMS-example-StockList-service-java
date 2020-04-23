@@ -1,4 +1,4 @@
-package jms_demo_services;
+package jms_demo_services.config;
 
 import java.util.Objects;
 
@@ -6,7 +6,7 @@ public class Configuration {
 
   public final String initialContextFactory;
 
-  public final String providerURL;
+  public final String jmsUrl;
 
   public final String connectionFactoryName;
 
@@ -16,22 +16,22 @@ public class Configuration {
 
   public final String password;
 
-  private Configuration(String initialContextFactory, String providerURL,
+  private Configuration(String initialContextFactory, String jmsUrl,
       String connectionFactoryName, String topic, String username, String password) {
 
     this.initialContextFactory = initialContextFactory;
-    this.providerURL = providerURL;
+    this.jmsUrl = jmsUrl;
     this.connectionFactoryName = connectionFactoryName;
     this.topic = topic;
     this.username = username;
     this.password = password;
   }
 
-  static class Builder {
+  public static class Builder {
 
     private String initialContextFactory;
 
-    private String providerURL;
+    private String jmsUrl;
 
     private String connectionFactoryName;
 
@@ -41,38 +41,38 @@ public class Configuration {
 
     private String password;
 
-    Builder withProviderURL(String providerURL) {
-      Objects.requireNonNull(providerURL);
-      this.providerURL = providerURL;
+    public Builder withJmsURL(String jmsUrl) {
+      Objects.requireNonNull(jmsUrl, "Please provide the <jmsUrl> entry");
+      this.jmsUrl = jmsUrl;
       return this;
     }
 
-    Builder withInitialiContextFactory(String initialCotextFactory) {
-      Objects.requireNonNull(initialCotextFactory);
+    public Builder withInitialiContextFactory(String initialCotextFactory) {
+      Objects.requireNonNull(initialCotextFactory, "Please provide the <initialContextFactory> entry");
       this.initialContextFactory = initialCotextFactory;
       return this;
     }
 
-    Builder withConnectionFactoryName(String connectionFactoryName) {
-      Objects.requireNonNull(connectionFactoryName);
+    public Builder withConnectionFactoryName(String connectionFactoryName) {
+      Objects.requireNonNull(connectionFactoryName, "Please provide the <connectionFactoryName> entry");
       this.connectionFactoryName = connectionFactoryName;
       return this;
     }
 
-    Builder withTopic(String topic) {
-      Objects.requireNonNull(topic);
+    public Builder withTopic(String topic) {
+      Objects.requireNonNull(topic,  "Please provide the <topic> entry");
       this.topic = topic;
       return this;
     }
 
-    Builder withCredentials(String username, String password) {
+    public Builder withCredentials(String username, String password) {
       this.username = username;
       this.password = password;
       return this;
     }
 
-    Configuration build() {
-      return new Configuration(initialContextFactory, providerURL, connectionFactoryName, topic,
+    public Configuration build() {
+      return new Configuration(initialContextFactory, jmsUrl, connectionFactoryName, topic,
           username, password);
     }
 

@@ -13,7 +13,7 @@
  * the License.
  */
 
-package jms_demo_services.stock_list;
+package jms_demo_services.stocklist;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -26,16 +26,10 @@ public class FeedMessage implements Serializable {
   private static final long serialVersionUID = 1L;
 
   // The item name
-  public String itemName = null;
+  public final String itemName;
 
   // An HashMap containing the updates for the item (the field names are the keys)
-  public Map<String, String> currentValues = null;
-
-  // The id related to the handle of this item
-  public String handleId = null;
-
-  public FeedMessage() {
-  }
+  public final Map<String, String> currentValues;
 
   public FeedMessage(String itemName, final Map<String, String> currentValues) {
     this.itemName = itemName;
