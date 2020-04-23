@@ -65,7 +65,7 @@ where the `broker` property can be:
 
 The `buildDemo` task will create a distribution of the project under the `build/install/stocklist_demo_service` folder, from which you can start the service. 
 
-Moreover, the `build/deploy` folder will be populated with all the jar files to be deployed into your local JMS Extender installation. In particular, `feedmessage-X.Y.Z.jar` will contains the `FeedMessage` class, required by the Extender to create any object sent or received by its clients.
+Moreover, the `build/deploy` folder will be populated with all the JMS broker-specific jar files to be deployed into your local JMS Extender installation. In particular, `feedmessage-X.Y.Z.jar` will contains the `FeedMessage` class, required by the Extender to create any object sent or received by its clients.
 
 ### Start the Demo Service
 
