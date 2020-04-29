@@ -1,0 +1,1 @@
+This directory contains JMS broker-specific jar files that cannot be resolved by dependencies declared in `build.gradle`.
