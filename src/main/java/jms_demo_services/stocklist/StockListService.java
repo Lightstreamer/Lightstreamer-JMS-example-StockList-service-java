@@ -43,23 +43,20 @@ public class StockListService implements FeedListener {
     // Instantiate a JMSWrapper for stocks topic
     stocksTopicWrapper = new JmsWrapper(config);
 
-    // Instantiate and start the simulator. This is the object that "produce" data
+    // Instantiate and start the simulator. This is the object that "produce" data.
     feedSimulator = new FeedSimulator(this);
   }
 
   public void start() {
     // Start the simulator
     feedSimulator.start();
-
     log.debug("Stock List service ready");
   }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Feed listener
 
   /**
    * Receives update from the feed simulator.
    */
+  @Override
   public void onFeedUpdate(String itemName, Map<String, String> currentValues, boolean isSnapshot) {
     // Prepare the object to send through JMS
     FeedMessage toSend = new FeedMessage(itemName, currentValues);
