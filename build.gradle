@@ -42,9 +42,11 @@ dependencies {
             break;
 
         where:
-            JMS_BROKER is a generic string that identifies the broker for which this build is targeted. 
-            DEP_X is the reference to the JMS broker-specific java library. If the library is not available
-            on JCenter, please copy it under the "local_libs" folder, as already done with TIBCO.
+            JMS_BROKER
+                is a generic string that identifies the broker for which this build is targeted. 
+            DEP_X
+                is the reference to the JMS broker-specific java library. If the library is not available
+                on JCenter, please copy it under the "local_libs" folder, as already done with TIBCO.
         */
         
         default:
@@ -55,16 +57,17 @@ dependencies {
 version = '2.0.0'
 sourceCompatibility = '1.8'
 mainClassName = "jms_demo_services.App"
+applicationDefaultJvmArgs = ["-Dbroker=$whichBroker"]
 
 task makeFeedMessageJar(type:Jar, dependsOn: classes) {
     baseName = commonJarName
     from sourceSets.main.output.classesDirs.filter {
-        include '**/FeedMessage.class'
+        include 'jms_demo_services/stocklist/FeedMessage.class'
     }
 }
 
 task buildDemo(type: Copy, dependsOn: [makeFeedMessageJar, installDist]) {
-    description 'Copies the jar files to the lib/log folder of the source docker image directory.'
+    description 'Copies the jar files to the build/deploy folder.'
     from ("$buildDir/install/$project.name/lib") {
         exclude "javax.jms-api-*.jar"
         exclude "logback-*.jar"
