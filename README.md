@@ -46,7 +46,7 @@ inline comments for more details).
 
 To configure the demo service, follow these steps:
 
-1. Edit the set of settings as per the configuration of JMS broker of choice in the `src/main/resources/service.conf` file. If you want use a different broker, add the relative settings following the provided samples. All parameters are mandatory.
+1. Edit the set of settings as per the configuration of the selected JMS broker in the `src/main/resources/service.conf` file. If you want use a different broker, add the relative settings following the provided samples. All parameters are mandatory.
 
 2. Check the logging configuration file `src/main/resources/logback.xml`.
 
