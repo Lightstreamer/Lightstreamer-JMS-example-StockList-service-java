@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) Lightstreamer Srl
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,8 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,7 +36,7 @@ public class FeedSimulator {
 
   private static final ScheduledExecutorService dispatcher = Executors.newScheduledThreadPool(2);
 
-  private static final Random __random = new Random();
+  private static final Random random = new Random();
 
     /**
      * Used to automatically generate the updates for the 30 stocks:
@@ -230,7 +227,7 @@ public class FeedSimulator {
 
       double weight = (relDist * relDist * relDist);
       double prob = (1 - weight) / 2;
-      boolean goFarther = __random.nextDouble() < prob;
+      boolean goFarther = random.nextDouble() < prob;
 
       if (!goFarther) {
         direction *= -1;
@@ -309,12 +306,12 @@ public class FeedSimulator {
   }
 
   private double gaussian(double mean, double stddev) {
-    double base = __random.nextGaussian();
+    double base = random.nextGaussian();
     return base * stddev + mean;
   }
 
   private int uniform(int min, int max) {
-    int base = __random.nextInt(max + 1 - min);
+    int base = random.nextInt(max + 1 - min);
     return base + min;
   }
 }
