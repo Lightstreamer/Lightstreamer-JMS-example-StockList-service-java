@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) Lightstreamer Srl
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package jms_demo_services.config;
 
 import java.util.Objects;
@@ -10,21 +24,19 @@ public class Configuration {
 
   public final String connectionFactoryName;
 
-  public final String topic;
+  public final String topicName;
 
   public final String username;
 
   public final String password;
 
-  private Configuration(String initialContextFactory, String jmsUrl,
-      String connectionFactoryName, String topic, String username, String password) {
-
-    this.initialContextFactory = initialContextFactory;
-    this.jmsUrl = jmsUrl;
-    this.connectionFactoryName = connectionFactoryName;
-    this.topic = topic;
-    this.username = username;
-    this.password = password;
+  private Configuration(Builder builder) {
+    this.initialContextFactory = builder.initialContextFactory;
+    this.jmsUrl = builder.jmsUrl;
+    this.connectionFactoryName = builder.connectionFactoryName;
+    this.topicName = builder.topicName;
+    this.username = builder.username;
+    this.password = builder.password;
   }
 
   public static class Builder {
@@ -35,7 +47,7 @@ public class Configuration {
 
     private String connectionFactoryName;
 
-    private String topic;
+    private String topicName;
 
     private String username;
 
@@ -48,20 +60,22 @@ public class Configuration {
     }
 
     public Builder withInitialiContextFactory(String initialCotextFactory) {
-      Objects.requireNonNull(initialCotextFactory, "Please provide the <initialContextFactory> entry");
+      Objects.requireNonNull(initialCotextFactory,
+          "Please provide the <initialContextFactory> entry");
       this.initialContextFactory = initialCotextFactory;
       return this;
     }
 
     public Builder withConnectionFactoryName(String connectionFactoryName) {
-      Objects.requireNonNull(connectionFactoryName, "Please provide the <connectionFactoryName> entry");
+      Objects.requireNonNull(connectionFactoryName,
+          "Please provide the <connectionFactoryName> entry");
       this.connectionFactoryName = connectionFactoryName;
       return this;
     }
 
-    public Builder withTopic(String topic) {
-      Objects.requireNonNull(topic,  "Please provide the <topic> entry");
-      this.topic = topic;
+    public Builder withTopicName(String topicName) {
+      Objects.requireNonNull(topicName, "Please provide the <topicName> entry");
+      this.topicName = topicName;
       return this;
     }
 
@@ -72,8 +86,7 @@ public class Configuration {
     }
 
     public Configuration build() {
-      return new Configuration(initialContextFactory, jmsUrl, connectionFactoryName, topic,
-          username, password);
+      return new Configuration(this);
     }
 
   }
