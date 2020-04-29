@@ -64,7 +64,7 @@ class JmsWrapper {
 
     try {
       jndiContext = new InitialContext(properties);
-      log.info("JNDI Context[" + jndiContext.getEnvironment() + "]...");
+      log.info("JNDI Context[{}]...", jndiContext.getEnvironment());
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -110,8 +110,8 @@ class JmsWrapper {
       initSession();
 
       // Find our destination
-      log.info("Looking up destination [{}]...", config.topic);
-      destination = session.createTopic(config.topic);
+      log.info("Looking up destination [{}]...", config.topicName);
+      destination = session.createTopic(config.topicName);
 
       // Get the MessageProducer from our Session
       producer = session.createProducer(destination);
@@ -124,7 +124,7 @@ class JmsWrapper {
   /**
    * Sends an object message.
    */
-  public void sendObjectMessage(Serializable obj) throws JMSException {
+  public synchronized void sendObjectMessage(Serializable obj) throws JMSException {
     // Get a message
     ObjectMessage objMessage = session.createObjectMessage();
 
