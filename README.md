@@ -10,6 +10,8 @@ Note that this service makes no use of the JMS Extender APIs: it works by using 
 
 Check out the sources for further explanations.
 
+<!-- END DESCRIPTION lightstreamer-jms-example-stocklist-service-java -->
+
 ## Install
 
 If you want to install a version of this demo pointing to your local [Lightstreamer JMS Extender](http://download.lightstreamer.com/#jms), follow these steps:
@@ -75,7 +77,7 @@ From the `build/install/stocklist_demo_service` directory, run the launch script
 $ ./bin/stocklist_demo_service
 ```
 
-or launch `bin/stocklist/stocklist_demo_service.bat` on Windows systems.
+or launch `bin/stocklist_demo_service.bat` on Windows systems.
 
 
 ### Set up Lightstreamer JMS Extender
@@ -89,7 +91,7 @@ or launch `bin/stocklist/stocklist_demo_service.bat` on Windows systems.
     ```xml
     <param name="disabled">false</param>
     ```
-    **_NOTE_**: Add a new JMS connector configuration in the case of a not listed JMS broker: see the inline comments for details.
+    **_NOTE_**: Add a new JMS connector configuration in the case you want to use a differente JMS broker: see the inline comments for details.
 
 Now you can test this demo running the [Lightstreamer JMS Extender - Basic Stock-List Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript).
 
