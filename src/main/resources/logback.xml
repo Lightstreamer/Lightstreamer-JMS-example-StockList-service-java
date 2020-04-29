@@ -11,7 +11,7 @@
     <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>./logs/JMSDemoServices.log</File>
         <encoder>
-            <pattern>%d{dd-MMM-yy HH:mm:ss,SSS }|%-5.5p|%-33.33c|%-17.27t|%m%n</pattern>
+            <pattern>%d{dd-MMM-yy HH:mm:ss,SSS}|%5p|%-20c{0}|%-20.-20t|%m%n</pattern>
         </encoder>
     </appender>
 
