@@ -26,10 +26,13 @@ public class FeedMessage implements Serializable {
   private static final long serialVersionUID = 1L;
 
   // The item name
-  public final String itemName;
+  public String itemName;
 
   // An HashMap containing the updates for the item (the field names are the keys)
-  public final Map<String, String> currentValues;
+  public Map<String, String> currentValues;
+
+  public FeedMessage() {
+  }
 
   public FeedMessage(String itemName, final Map<String, String> currentValues) {
     this.itemName = itemName;
