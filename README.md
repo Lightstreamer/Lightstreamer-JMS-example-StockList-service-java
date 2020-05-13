@@ -34,9 +34,9 @@ There's no need to create topics or queues, because [ActiveMQ Artemis](http://ac
 
 #### TIBCO EMS
 
-1. You should create a new topic. Open the `topics.conf` file located under `<EMSHome>/bin/` and append to it *stocksTopic*.
+1. You should create a new topic. Open the `topics.conf` file located under `<EMS_HoME>/bin/` and append to it *stocksTopic*.
 
-2. Copy `tibjms.jar` from `<EMSHome>/lib` to the `local_libs` folder.
+2. Copy `tibjms.jar` from `<EMS_HoME>/lib` to the `local_libs` folder.
 
 
 **_NOTE_**: In the case of a different JMS broker, please follow the relative instructions on how to properly configure a topic. Furthermore, add an entry to the `dependencies` section in the `build.gradle` (read the
