@@ -59,10 +59,10 @@ public class Configuration {
       return this;
     }
 
-    public Builder withInitialiContextFactory(String initialCotextFactory) {
-      Objects.requireNonNull(initialCotextFactory,
+    public Builder withInitialContextFactory(String initialContextFactory) {
+      Objects.requireNonNull(initialContextFactory,
           "Please provide the <initialContextFactory> entry");
-      this.initialContextFactory = initialCotextFactory;
+      this.initialContextFactory = initialContextFactory;
       return this;
     }
 
