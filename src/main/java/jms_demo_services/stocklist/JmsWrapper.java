@@ -113,7 +113,7 @@ class JmsWrapper {
       Destination destination;
       try {
         destination = (Destination) jndiContext.lookup(config.topicName);
-      } catch (Exception je) {
+      } catch (NamingException je) {
         // In case of dynamic destinations
         destination = session.createTopic(config.topicName);
       }
