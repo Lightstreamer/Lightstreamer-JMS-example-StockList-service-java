@@ -4,7 +4,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
  *
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
@@ -48,8 +48,6 @@ class JmsWrapper {
   private Connection connection;
 
   private Session session;
-
-  private Destination destination;
 
   private MessageProducer producer;
 
@@ -111,7 +109,14 @@ class JmsWrapper {
 
       // Find our destination
       log.info("Looking up destination [{}]...", config.topicName);
-      destination = session.createTopic(config.topicName);
+
+      Destination destination;
+      try {
+        destination = (Destination) jndiContext.lookup(config.topicName);
+      } catch (Exception je) {
+        // In case of dynamic destinations
+        destination = session.createTopic(config.topicName);
+      }
 
       // Get the MessageProducer from our Session
       producer = session.createProducer(destination);
