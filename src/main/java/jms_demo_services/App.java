@@ -40,15 +40,12 @@ public class App {
       props.load(is);
 
       // Read parameters
-      //@formatter:off
-      Configuration config =  new Configuration.Builder()
-        .withJmsURL(getProperty(props, "jmsUrl"))
-        .withInitialiContextFactory(getProperty(props, "initialContextFactory"))
+      Configuration config = new Configuration.Builder().withJmsURL(getProperty(props, "jmsUrl"))
+        .withInitialContextFactory(getProperty(props, "initialContextFactory"))
         .withConnectionFactoryName(props.getProperty("connectionFactoryName"))
         .withTopicName(props.getProperty("topicName"))
         .withCredentials(getProperty(props, "user"), getProperty(props, "password"))
         .build();
-      //@formatter:on
 
       // Create and start our service passing the supplied configuration
       new StockListService(config).start();
