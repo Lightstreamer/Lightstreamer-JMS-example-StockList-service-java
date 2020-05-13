@@ -60,6 +60,6 @@ public class App {
 
   private static String getProperty(Properties props, String key) {
     return props.getProperty(broker + "." + key);
-
   }
+
 }
