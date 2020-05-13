@@ -33,6 +33,16 @@ dependencies {
             runtimeOnly files('local_libs/tibjms.jar') 
             break;
 
+        case "IBM_MQ":
+            runtimeOnly 'com.ibm.mq:com.ibm.mq.allclient:9.1.3.0'
+            runtimeOnly files('local_libs/fscontext.jar','local_libs/providerutil.jar') 
+            break;
+
+        case "WebLogic":
+            runtimeOnly files('local_libs/wlthint3client.jar')
+            break;
+
+
         /* In case of different broker, please add a new 'case' here:
         case "<JMS_BROKER>":
             runtimeOnly '<DEP1>'
