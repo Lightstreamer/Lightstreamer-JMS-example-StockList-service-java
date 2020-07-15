@@ -13,11 +13,11 @@
  * the License.
  */
 
-package jms_demo_services.stocklist;
+package com.lightstreamer.jms.demo.stocklist_service;
 
+import com.lightstreamer.jms.demo.stocklist_service.config.Configuration;
 import java.io.Serializable;
 import java.util.Properties;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -28,17 +28,15 @@ import javax.jms.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import jms_demo_services.config.Configuration;
 
 /**
  * This object can handle: 1 MessageConsumer and 1 MessageProducer related to the same destination
  * Session and Connection are shared between instances.
  */
 class JmsWrapper {
+
   private static Logger log = LoggerFactory.getLogger(JmsWrapper.class);
 
   private final Configuration config;
@@ -70,9 +68,7 @@ class JmsWrapper {
     initProducer();
   }
 
-  /**
-   * Prepares the Session and the Connection.
-   */
+  /** Prepares the Session and the Connection. */
   private void initSession() throws JMSException, NamingException {
     // Lookup to find our ConnectionFactory
     log.info("Looking up queue connection factory [{}] ...", config.connectionFactoryName);
@@ -97,10 +93,7 @@ class JmsWrapper {
     log.debug("Session created");
   }
 
-
-  /**
-   * Prepares the MessageProducer.
-   */
+  /** Prepares the MessageProducer. */
   private void initProducer() {
     try {
       // First of all we have to initiate the Session
@@ -126,9 +119,7 @@ class JmsWrapper {
     }
   }
 
-  /**
-   * Sends an object message.
-   */
+  /** Sends an object message. */
   public synchronized void sendObjectMessage(Serializable obj) throws JMSException {
     // Get a message
     ObjectMessage objMessage = session.createObjectMessage();

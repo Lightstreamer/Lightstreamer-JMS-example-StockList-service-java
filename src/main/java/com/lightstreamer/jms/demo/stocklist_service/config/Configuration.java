@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package jms_demo_services.config;
+package com.lightstreamer.jms.demo.stocklist_service.config;
 
 import java.util.Objects;
 
@@ -60,15 +60,15 @@ public class Configuration {
     }
 
     public Builder withInitialContextFactory(String initialContextFactory) {
-      Objects.requireNonNull(initialContextFactory,
-          "Please provide the <initialContextFactory> entry");
+      Objects.requireNonNull(
+          initialContextFactory, "Please provide the <initialContextFactory> entry");
       this.initialContextFactory = initialContextFactory;
       return this;
     }
 
     public Builder withConnectionFactoryName(String connectionFactoryName) {
-      Objects.requireNonNull(connectionFactoryName,
-          "Please provide the <connectionFactoryName> entry");
+      Objects.requireNonNull(
+          connectionFactoryName, "Please provide the <connectionFactoryName> entry");
       this.connectionFactoryName = connectionFactoryName;
       return this;
     }
@@ -88,7 +88,5 @@ public class Configuration {
     public Configuration build() {
       return new Configuration(this);
     }
-
   }
-
 }

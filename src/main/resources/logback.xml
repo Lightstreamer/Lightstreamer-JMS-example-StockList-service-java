@@ -15,7 +15,7 @@
         </encoder>
     </appender>
 
-    <logger name="jms_demo_services" level="debug">
+    <logger name="com.lightstreamer.jms.demo" level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILEOUT" />
     </logger>

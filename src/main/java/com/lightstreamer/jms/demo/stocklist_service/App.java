@@ -13,16 +13,13 @@
  * the License.
  */
 
-package jms_demo_services;
+package com.lightstreamer.jms.demo.stocklist_service;
 
+import com.lightstreamer.jms.demo.stocklist_service.config.Configuration;
 import java.io.InputStream;
 import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import jms_demo_services.config.Configuration;
-import jms_demo_services.stocklist.StockListService;
 
 public class App {
 
@@ -40,12 +37,14 @@ public class App {
       props.load(is);
 
       // Read parameters
-      Configuration config = new Configuration.Builder().withJmsURL(getProperty(props, "jmsUrl"))
-        .withInitialContextFactory(getProperty(props, "initialContextFactory"))
-        .withConnectionFactoryName(props.getProperty("connectionFactoryName"))
-        .withTopicName(props.getProperty("topicName"))
-        .withCredentials(getProperty(props, "user"), getProperty(props, "password"))
-        .build();
+      Configuration config =
+          new Configuration.Builder()
+              .withJmsURL(getProperty(props, "jmsUrl"))
+              .withInitialContextFactory(getProperty(props, "initialContextFactory"))
+              .withConnectionFactoryName(props.getProperty("connectionFactoryName"))
+              .withTopicName(props.getProperty("topicName"))
+              .withCredentials(getProperty(props, "user"), getProperty(props, "password"))
+              .build();
 
       // Create and start our service passing the supplied configuration
       new StockListService(config).start();
@@ -61,5 +60,4 @@ public class App {
   private static String getProperty(Properties props, String key) {
     return props.getProperty(broker + "." + key);
   }
-
 }
