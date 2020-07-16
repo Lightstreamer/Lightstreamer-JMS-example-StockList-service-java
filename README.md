@@ -52,7 +52,7 @@ To configure the demo service, follow these steps:
 
 ### Build the Demo Service
 
-To build the demo service, run the *Gradle* build as follows:
+To build the demo service, run *Gradle* as follows:
 
 ```sh
 $ ./gradlew buildDemo -Pbroker=<JMS Broker>
