@@ -65,19 +65,19 @@ where the `broker` property can be:
 * `TIBCO`
 * the `<JMS_BROKER>` string you specified in the he `dependencies` section of `build.gradle` in the case of different JMS broker.
 
-The `buildDemo` task will create a distribution of the project under the `build/install/stocklist_demo_service` folder, from which you can start the service. 
+The `buildDemo` task will create a distribution of the project under the `build/install/stocklist-demo-service` folder, from which you can start the service.
 
 Moreover, the `build/deploy` folder will be populated with all the JMS broker-specific jar files to be deployed into your local JMS Extender installation. In addition, `feedmessage-X.Y.Z.jar` will contains the `FeedMessage` class required by the Extender to create any object sent or received by its clients.
 
 ### Start the Demo Service
 
-From the `build/install/stocklist_demo_service` directory, run the launch script to start sending simulated messages to the JMS broker:
+From the `build/install/stocklist-demo-service` directory, run the launch script to start sending simulated messages to the JMS broker:
 
 ```sh
-$ ./bin/stocklist_demo_service
+$ ./bin/stocklist-demo-service
 ```
 
-or launch `bin/stocklist_demo_service.bat` on Windows systems.
+or launch `bin/stocklist-demo-service.bat` on Windows systems.
 
 
 ### Set up Lightstreamer JMS Extender
