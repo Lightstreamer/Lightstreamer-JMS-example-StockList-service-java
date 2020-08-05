@@ -1,7 +1,5 @@
 # Lightstreamer JMS Extender - Stock-List Demo - Java (JMS) Service
 
-<!-- START DESCRIPTION lightstreamer-jms-example-stocklist-service-java -->
-
 This project contains the source code and all the resources needed to install the Stock-List Demo Service for Lightstreamer JMS Extender.
 
 The Stock-List Demo Service is stand-alone Java application that acts as a service, sending simulated stock quotes to a JMS topic. It provides data for client-side Stock-List Demos for JMS Extender, such as the [HTML Demo](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript) and the [Node.js Demo](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-node).
@@ -9,8 +7,6 @@ The Stock-List Demo Service is stand-alone Java application that acts as a servi
 Note that this service makes no use of the JMS Extender APIs: it works by using directly the JMS APIs. For simplicity, a single JMS topic is used for all stocks, while in a real scenario you would probably use a different JMS topic for each stock.
 
 Check out the sources for further explanations.
-
-<!-- END DESCRIPTION lightstreamer-jms-example-stocklist-service-java -->
 
 ## Install
 
@@ -100,13 +96,11 @@ Now you can test this demo running the [Lightstreamer JMS Extender - Basic Stock
 ## See Also
 
 ### Clients Using This Service
-<!-- START RELATED_ENTRIES -->
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript)
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - Node.js Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-node)
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - Java SE Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-java)
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - Android Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-android)
 
-<!-- END RELATED_ENTRIES -->
 ### Related Projects
 * [Lightstreamer - Stock-List Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java)
 * [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-ReusableMetadata-adapter-java)
