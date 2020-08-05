@@ -103,6 +103,8 @@ Now you can test this demo running the [Lightstreamer JMS Extender - Basic Stock
 <!-- START RELATED_ENTRIES -->
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-javascript)
 * [Lightstreamer JMS Extender - Basic Stock-List Demo - Node.js Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-node)
+* [Lightstreamer JMS Extender - Basic Stock-List Demo - Java SE Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-java)
+* [Lightstreamer JMS Extender - Basic Stock-List Demo - Android Client](https://github.com/Lightstreamer/Lightstreamer-JMS-example-StockList-client-android)
 
 <!-- END RELATED_ENTRIES -->
 ### Related Projects
