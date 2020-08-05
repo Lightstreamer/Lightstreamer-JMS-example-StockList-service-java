@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>./logs/JMSDemoServices.log</File>
+        <File>./logs/stocklist_service.log</File>
         <encoder>
             <pattern>%d{dd-MMM-yy HH:mm:ss,SSS}|%5p|%-20c{0}|%-20.-20t|%m%n</pattern>
         </encoder>
