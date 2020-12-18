@@ -10,7 +10,7 @@ Check out the sources for further explanations.
 
 ## Install
 
-If you want to install a version of this demo pointing to your local [Lightstreamer JMS Extender](http://download.lightstreamer.com/#jms), follow these steps:
+If you want to install a version of this demo pointing to your local [Lightstreamer JMS Extender](https://lightstreamer.com/download/#jms200), follow these steps:
 
 ### Configure the JMS Broker
 
