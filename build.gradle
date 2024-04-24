@@ -1,31 +1,19 @@
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-    }
-}
-
 plugins {
-    id 'com.github.sherter.google-java-format' version '0.9'
     id 'application'
 }
 
 applicationDefaultJvmArgs = ["-Xms512m", "-Xmx1024m"]
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 // Set default broker if not specified from command line
 def whichBroker = project.properties['broker']?:'ActiveMQ'
 
 dependencies {
-    compile 'ch.qos.logback:logback-classic:1.2.0'
-    compile 'javax.jms:javax.jms-api:2.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.0'
+    implementation 'javax.jms:javax.jms-api:2.0'
     
     switch (whichBroker) {
         case "ActiveMQ":
@@ -72,34 +60,32 @@ dependencies {
     }
 }
 
-version = '2.0.0'
+version = '3.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
 
 application {
     mainClass = "com.lightstreamer.jms.demo.stocklist_service.App"
     applicationDefaultJvmArgs = ["-Dbroker=$whichBroker"]
-    sourceCompatibility = '1.8'
 }
 
-
-task makeFeedMessageJar(type:Jar, dependsOn: classes) {
-    baseName = commonJarName
+tasks.register('makeFeedMessageJar', Jar) {
+    archiveBaseName = commonJarName
     from sourceSets.main.output.classesDirs.filter {
         include 'com/lightstreamer/jms/demo/stocklist_service/message/FeedMessage.class'
     }
 }
 
-task buildDemo(type: Copy, dependsOn: [makeFeedMessageJar, installDist]) {
-    description 'Copies the jar files to the build/deploy folder.'
-    from ("$buildDir/install/$project.name/lib") {
+tasks.register("buildDemo", Copy) {
+    into "$buildDir/$deployDir"
+    from makeFeedMessageJar
+    from (configurations.runtimeClasspath) {
         exclude "javax.jms-api-*.jar"
         exclude "logback-*.jar"
         exclude "slf4j-*.jar"
-        exclude "$applicationName-*.jar"
     }
-    from ("$libsDir") {
-        include "$commonJarName-*.jar"
-    }
-    
-    into "$buildDir/$deployDir"
 }
-
