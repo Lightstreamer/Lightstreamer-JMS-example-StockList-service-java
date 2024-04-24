@@ -80,7 +80,8 @@ tasks.register('makeFeedMessageJar', Jar) {
     }
 }
 
-tasks.register("buildDemo", Copy) {
+tasks.register("distribuite", Copy) {
+    dependsOn installDist
     into "$buildDir/$deployDir"
     from makeFeedMessageJar
     from (configurations.runtimeClasspath) {
@@ -88,4 +89,8 @@ tasks.register("buildDemo", Copy) {
         exclude "logback-*.jar"
         exclude "slf4j-*.jar"
     }
+}
+
+tasks.named('build') {
+    dependsOn('distribuite', 'installDist')
 }

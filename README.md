@@ -50,7 +50,7 @@ To configure the demo service, follow these steps:
 To build the demo service, run *Gradle* as follows:
 
 ```sh
-$ ./gradlew buildDemo -Pbroker=<JMS Broker>
+$ ./gradlew build -Pbroker=<JMS Broker>
 ```
 
 where the `broker` property can be:
@@ -60,7 +60,7 @@ where the `broker` property can be:
 * `TIBCO`
 * the `<JMS_BROKER>` string you specified in the `dependencies` section of `build.gradle` in the case of different JMS broker.
 
-The `buildDemo` task will create a distribution of the project under the `build/install/stocklist-demo-service` folder, from which you can start the service.
+The `build` task will create a distribution of the project under the `build/install/stocklist-demo-service` folder, from which you can start the service.
 
 Moreover, the `build/deploy` folder will be populated with all the JMS broker-specific jar files to be deployed into your local JMS Extender installation. In addition, `feedmessage-X.Y.Z.jar` will contain the `FeedMessage` class required by the Extender to create any object sent or received by its clients.
 
