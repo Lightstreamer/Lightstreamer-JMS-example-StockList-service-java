@@ -79,7 +79,7 @@ or launch `bin/stocklist-demo-service.bat` on Windows systems.
 
 1. The JMS Extender StockList Demo requires a Lightstreamer JMS Extender instance running. Please refer to the Lightstreamer web site [download page](http://download.lightstreamer.com/) to find Lightstreamer JMS Extender download packages.
 
-2. Now copy the jar files from `build/deploy` under the `<JMS_EXTENDER_HOME>/jms_connectors/lib` folder.
+2. Now copy the jar files from `build/deploy` to the `<JMS_EXTENDER_HOME>/jms_connectors/lib` folder.
 
 3. Edit the `<JMS_EXTENDER_HOME>/jms_connectors/jms_connectors_conf.xml` file, ensuring that the sample JMS connector configuration relative to the selected JMS broker is enabled. In particular, check that the `disabled` parameter is set to `false`:
 
